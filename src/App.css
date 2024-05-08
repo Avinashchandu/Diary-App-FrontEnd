@@ -1,0 +1,111 @@
+/* App.css */
+
+
+body, h1, nav, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  
+  
+  #headnav {
+    font-size: 24px;
+    padding: 20px 0;
+  }
+  
+  
+  .link {
+    padding: 20px 36px; 
+    font-weight: bold; 
+    font-size: 18px; 
+    text-decoration: none;
+    color: black;
+    position: relative;
+  }
+  
+  
+  .link:hover {
+    transition: all 0.3s;
+    color: rgb(70, 47, 172);
+    font-style: italic;
+  }
+  
+html,body
+{
+    margin: 0;
+    padding: 0;
+}
+#home
+{
+    background-color:rgba(235, 162, 26, 0.49);
+    height: 100vh;
+    width: 100vw;
+    margin-top: -25px;
+    padding: 0;
+}
+#entries
+{
+    background-color: palevioletred;
+    height: 100vh;
+    width: 100vw;
+    margin-top: -25px;
+    padding: 0;
+
+}
+/* form */
+#form
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
+    gap: 30px;
+    
+}
+#main
+{
+    background-color: rgba(255, 255, 255, 0.4); 
+    border: 0;
+    height: auto;
+    min-height: 300px;
+    width: 600px;
+    resize: none;
+    line-height: 2.1;
+    border-radius: 7px;
+    background-image: url('./css/image.png');
+    padding: 3px;
+    font-family: 'Times New Roman', Times, serif
+    
+}
+
+#title
+{
+    background-color: aliceblue;
+    border: 0;
+    border-radius: 20px;
+    align-content: center;
+    height: 30px;
+    font-family: "Cedarville Cursive", cursive;
+    font-size: large;
+    font-weight: bold;
+    padding: 2px;
+}
+
+
+#submit
+{
+    background-color: rgba(235, 162, 26, 0);
+    border: 0;
+    font-family: cursive;
+    font-size: x-large;
+    font-weight: bold;
+}
+
