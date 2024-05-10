@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { motion as m } from 'framer-motion';
 import Nava from './Navbar';
@@ -7,14 +7,40 @@ import TodayDate from './components/date';
 function Home() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const currentDate = new Date().toISOString().split('T')[0]; 
+
+  useEffect(() => {
+    setSelectedDate(currentDate); 
+  }, []);
+
+  useEffect(() => {
+    if (selectedDate) {
+      setIsLoading(true);
+      fetch(`http://localhost:8080/api/entries?game=${selectedDate}`, {
+        method: 'GET',
+        mode: 'cors',
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          setIsLoading(false);
+          setContent(data.content);
+          setTitle(data.title);
+        })
+        .catch(err => console.error('Error fetching data:', err));
+    }
+  }, [selectedDate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       // Send form data to server
-      const response = await fetch('http://localhost:8080/api/submit-form', {
+      const response = await fetch('http://localhost:8080/api/entry', {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -45,15 +71,15 @@ function Home() {
     <Container fluid>
       <m.div
         id='home'
-        animate={{ y: "0%" }}
+        animate={{ x: "0%" }}
         exit={{ opacity: 1 }}
-        initial={{ y: "100%" }}
+        initial={{ x: "100%" }}
         transition={{ duration: 0.75, ease: "easeOut" }}
       >
         <Nava />
         <center>
           <form id="form" onSubmit={handleSubmit}>
-            <h1><TodayDate /></h1>
+            <h1><TodayDate selectedDate={selectedDate} /></h1>
             <input
               placeholder='             Title'
               id="title"
